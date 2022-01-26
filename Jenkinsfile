@@ -15,6 +15,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'devops-test-react-app'
+        AWS_ECR_URL = '760761285600.dkr.ecr.us-east-1.amazonaws.com'
         AWS_CREDENTIAL_ID = 'ChamathAwsKey'
     }
 
@@ -30,7 +31,7 @@ pipeline {
         stage('Push image') {
             steps {
                 script {
-                    docker.withRegistry('https://760761285600.dkr.ecr.us-east-1.amazonaws.com', "ecr:${IMAGE_NAME}:${AWS_CREDENTIAL_ID}") {
+                    docker.withRegistry("https://${AWS_ECR_URL}", "ecr:us-east-1:${AWS_CREDENTIAL_ID}") {
                         docker.image("${IMAGE_NAME}").push()
                     }
                 }
