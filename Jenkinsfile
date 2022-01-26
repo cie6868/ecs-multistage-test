@@ -45,8 +45,19 @@ pipeline {
 
         stage('Deploy to ECS') {
             steps {
-                sh 'aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json'
-                sh "aws ecs update-service --cluster ${AWS_ECS_CLUSTER} --service ${AWS_ECS_SERVICE} --task-definition ${AWS_ECS_TASK_DEF}"
+                withCredentials(
+                    [
+                        [
+                            $class: 'AmazonWebServicesCredentialsBinding',
+                            credentialsId: "${AWS_CREDENTIAL_ID}",
+                            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        ]
+                    ]
+                ) {
+                    sh 'aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json'
+                    sh "aws ecs update-service --cluster ${AWS_ECS_CLUSTER} --service ${AWS_ECS_SERVICE} --task-definition ${AWS_ECS_TASK_DEF}"
+                }
             }
         }
     }
