@@ -26,7 +26,6 @@
             "volumesFrom": [],
             "image": "760761285600.dkr.ecr.us-east-1.amazonaws.com/devops-test-react-app",
             "essential": true,
-            "links": [],
             "name": "devops-test-react-app"
         }
     ],
