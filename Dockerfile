@@ -3,6 +3,8 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
+RUN pwd
+RUN ls
 RUN npm run build
 
 FROM nginx:mainline-alpine as prod
