@@ -27,7 +27,8 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}", "--build-arg APP_NAME=\"${APP_NAME}\" -f Dockerfile .")
+                    sh "sed -i -e 's|%APP_NAME%|${APP_NAME}|g' docker-entrypoint.sh"
+                    docker.build("${IMAGE_NAME}")
                 }
             }
         }
