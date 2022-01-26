@@ -59,6 +59,9 @@ pipeline {
                 ) {
                     sh "aws ecs register-task-definition --region ${AWS_ECS_REGION} --family ${AWS_ECS_TASK_DEF} --execution-role-arn ${AWS_ECS_EXEC_ROLE_ARN} --requires-compatibilities FARGATE --network-mode awsvpc --cpu 256 --memory 512 --container-definitions file://ecs-container-definition.json"
                     sh "aws ecs update-service --cluster ${AWS_ECS_CLUSTER} --service ${AWS_ECS_SERVICE} --task-definition ${AWS_ECS_TASK_DEF}"
+
+                    echo 'Waiting for ECS stability...'
+                    sh "aws ecs wait services-stable --cluster ${AWS_ECS_CLUSTER} --service ${AWS_ECS_SERVICE}"
                 }
             }
         }
