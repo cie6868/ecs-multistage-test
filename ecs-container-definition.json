@@ -1,0 +1,24 @@
+[
+    {
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/devops-test-react-app-task",
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "entryPoint": [],
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "protocol": "tcp",
+                "containerPort": 80
+            }
+        ],
+        "memoryReservation": 512,
+        "image": "760761285600.dkr.ecr.us-east-1.amazonaws.com/devops-test-react-app",
+        "essential": true,
+        "name": "devops-test-react-app"
+    }
+]

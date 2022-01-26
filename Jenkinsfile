@@ -17,9 +17,11 @@ pipeline {
         APP_NAME = 'ECS Test Deployment'
         IMAGE_NAME = 'devops-test-react-app'
         AWS_ECR_URL = '760761285600.dkr.ecr.us-east-1.amazonaws.com'
+        AWS_ECS_REGION = 'us-east-1'
         AWS_ECS_CLUSTER = 'DevOps-Test-Cluster'
         AWS_ECS_SERVICE = 'devops-test-react-app-service'
         AWS_ECS_TASK_DEF = 'devops-test-react-app-task'
+        AWS_ECS_EXEC_ROLE_ARN = 'arn:aws:iam::760761285600:role/ecsTaskExecutionRole'
         AWS_CREDENTIAL_ID = 'ChamathAwsKey'
     }
 
@@ -55,7 +57,7 @@ pipeline {
                         ]
                     ]
                 ) {
-                    sh 'aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json'
+                    sh "aws ecs register-task-definition --region ${AWS_ECS_REGION} --family ${AWS_ECS_TASK_DEF} --execution-role-arn ${AWS_ECS_EXEC_ROLE_ARN} --requires-compatibilities FARGATE --network-mode awsvpc --cpu 256 --memory 512 --container-definitions file://ecs-container-definition.json"
                     sh "aws ecs update-service --cluster ${AWS_ECS_CLUSTER} --service ${AWS_ECS_SERVICE} --task-definition ${AWS_ECS_TASK_DEF}"
                 }
             }
