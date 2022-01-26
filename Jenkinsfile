@@ -14,6 +14,7 @@ pipeline {
     }
 
     environment {
+        APP_NAME = 'ECS Test Deployment'
         IMAGE_NAME = 'devops-test-react-app'
         AWS_ECR_URL = '760761285600.dkr.ecr.us-east-1.amazonaws.com'
         AWS_CREDENTIAL_ID = 'ChamathAwsKey'
@@ -23,7 +24,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}")
+                    docker.build("${IMAGE_NAME}", "build-arg APP_NAME=${APP_NAME}")
                 }
             }
         }
