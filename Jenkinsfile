@@ -24,7 +24,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}", "build-arg APP_NAME=${APP_NAME}")
+                    docker.build("${IMAGE_NAME}", "--build-arg APP_NAME=${APP_NAME}")
                 }
             }
         }
