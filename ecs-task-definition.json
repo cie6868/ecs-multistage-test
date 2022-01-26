@@ -21,6 +21,9 @@
             "name": "devops-test-react-app"
         }
     ],
+    "compatibilities": [
+        "FARGATE"
+    ],
     "placementConstraints": [],
     "family": "devops-test-react-app-task"
 }
