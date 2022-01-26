@@ -1,10 +1,10 @@
 FROM node:lts-alpine as build
 WORKDIR /app
+RUN pwd
+RUN ls
 COPY package.json ./
 RUN npm install
 COPY . .
-RUN pwd
-RUN ls
 RUN npm run build
 
 FROM nginx:mainline-alpine as prod
