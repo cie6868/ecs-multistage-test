@@ -18,11 +18,11 @@
             "essential": true,
             "links": [],
             "privileged": true,
-            "name": "devops-test-react-app",
-            "requiresCompatibilities": [
-                "FARGATE"
-            ]
+            "name": "devops-test-react-app"
         }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
     ],
     "placementConstraints": [],
     "family": "devops-test-react-app-task"
