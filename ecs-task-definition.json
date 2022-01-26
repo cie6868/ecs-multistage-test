@@ -1,0 +1,26 @@
+{
+    "containerDefinitions": [
+        {
+            "entryPoint": [],
+            "portMappings": [
+                {
+                    "hostPort": 0,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ],
+            "command": [],
+            "cpu": 0,
+            "environment": [],
+            "memory": 512,
+            "volumesFrom": [],
+            "image": "760761285600.dkr.ecr.us-east-1.amazonaws.com/devops-test-react-app",
+            "essential": true,
+            "links": [],
+            "privileged": true,
+            "name": "devops-test-react-app"
+        }
+    ],
+    "placementConstraints": [],
+    "family": "devops-test-react-app-task"
+}
