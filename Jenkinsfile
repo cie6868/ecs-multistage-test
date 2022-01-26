@@ -29,7 +29,6 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    sh "sed -i -e 's|%APP_NAME%|${APP_NAME}|g' docker-entrypoint.sh"
                     docker.build("${IMAGE_NAME}")
                 }
             }
