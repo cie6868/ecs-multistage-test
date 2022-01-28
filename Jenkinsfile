@@ -14,7 +14,7 @@ pipeline {
     }
 
     environment {
-        APP_NAME = 'ECS Test Deployment'
+        APP_NAME = 'ECS Test Deployment 2'
         IMAGE_NAME = 'devops-test-react-app'
         AWS_ECR_URL = '760761285600.dkr.ecr.us-east-1.amazonaws.com'
         AWS_ECS_REGION = 'us-east-1'
